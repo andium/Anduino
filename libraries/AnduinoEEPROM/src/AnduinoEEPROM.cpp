@@ -39,8 +39,8 @@ void AnduinoEEPROM::begin()
     Serial.print("EEPROM Ready! \n");
     #endif
 
-    Wire1.begin();           //begin I2C
-    Wire1.setClock(1000000); //set clock freq to 1Mhz
+    WIRE.begin();           //begin I2C
+    WIRE.setClock(1000000); //set clock freq to 1Mhz
 
 }
 
@@ -92,11 +92,11 @@ void AnduinoEEPROM::storeImg(unsigned int eeaddress)
 void AnduinoEEPROM::write(unsigned int eeaddress, byte data ) 
 {
 
-  Wire1.beginTransmission(EEPROM_ADDR);
-  Wire1.write((int)(eeaddress >> 8));   // MSB
-  Wire1.write((int)(eeaddress & 0xFF)); // LSB
-  Wire1.write(data);
-  Wire1.endTransmission();
+  WIRE.beginTransmission(EEPROM_ADDR);
+  WIRE.write((int)(eeaddress >> 8));   // MSB
+  WIRE.write((int)(eeaddress & 0xFF)); // LSB
+  WIRE.write(data);
+  WIRE.endTransmission();
  
   delay(5);
 }
@@ -106,31 +106,31 @@ byte AnduinoEEPROM::read(unsigned int eeaddress )
 {
   byte rdata = 0xFF;
  
-  Wire1.beginTransmission(EEPROM_ADDR);
-  Wire1.write((int)(eeaddress >> 8));   // MSB
-  Wire1.write((int)(eeaddress & 0xFF)); // LSB
-  Wire1.endTransmission();
+  WIRE.beginTransmission(EEPROM_ADDR);
+  WIRE.write((int)(eeaddress >> 8));   // MSB
+  WIRE.write((int)(eeaddress & 0xFF)); // LSB
+  WIRE.endTransmission();
  
-  Wire1.requestFrom(EEPROM_ADDR,1);
+  WIRE.requestFrom(EEPROM_ADDR,1);
  
-  return rdata = Wire1.read();
+  return rdata = WIRE.read();
  
 }
 
 /*read a page sized chunk of EEPROM starting at eeaddress and store in buffer*/
 void AnduinoEEPROM::readPage(unsigned int eeaddress, byte buffer[], int pageSize)
 {
- Wire1.beginTransmission(EEPROM_ADDR);
- Wire1.write((int)(eeaddress >> 8)); // MSB
- Wire1.write((int)(eeaddress & 0xFF)); // LSB
- Wire1.endTransmission();
- Wire1.requestFrom(EEPROM_ADDR, pageSize);
+ WIRE.beginTransmission(EEPROM_ADDR);
+ WIRE.write((int)(eeaddress >> 8)); // MSB
+ WIRE.write((int)(eeaddress & 0xFF)); // LSB
+ WIRE.endTransmission();
+ WIRE.requestFrom(EEPROM_ADDR, pageSize);
  
  //Read one PAGE_SIZE page from EEPROM and store in buffer
  for (int i=0; i<pageSize; i++){
-   if (Wire1.available())
+   if (WIRE.available())
    {
-     buffer[i] = Wire1.read();
+     buffer[i] = WIRE.read();
    }
  }
 }
@@ -146,13 +146,13 @@ int AnduinoEEPROM::writePage(unsigned int eeaddress, byte* buffer, int pageSize)
         return 1;
     }
 
-    Wire1.beginTransmission(EEPROM_ADDR);
-    Wire1.write((int)(eeaddress >> 8)); // MSB
-    Wire1.write((int)(eeaddress & 0xFF)); // LSB
+    WIRE.beginTransmission(EEPROM_ADDR);
+    WIRE.write((int)(eeaddress >> 8)); // MSB
+    WIRE.write((int)(eeaddress & 0xFF)); // LSB
    
-    Wire1.write(buffer, pageSize); 
+    WIRE.write(buffer, pageSize); 
     
-    Wire1.endTransmission();
+    WIRE.endTransmission();
 
     delay(5);  //give EEPROM time to complete write before utilizing data
 

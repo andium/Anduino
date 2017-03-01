@@ -33,6 +33,12 @@
 #define EEPROM_SIZE 32768 //bytes
 #define PAGE_SIZE 64      //bytes
 
+#if defined(__AVR__) || defined(__i386__) || defined(ARDUINO_ARCH_SAMD) || defined(ESP8266) || defined(ARDUINO_ARCH_STM32)
+#define WIRE Wire
+#else // Arduino Due
+#define WIRE Wire1
+#endif
+
 /*In order to utilize a PAGE_SIZE of 64bytes BUFFER_LENGTH in the Wire.h must be edited
 to 66 in order to store the buffer and two address bytes
 #define BUFFER_LENGTH 66 edited in /wire.h
