@@ -6,7 +6,7 @@
   get started!
   https://github.com/andium/Anduino/wiki
 
-  Written by Brian Carbonette Copyright © 2016 Andium 
+  Written by Brian Carbonette Copyright © 2017 Andium 
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@
  
 /* Include the AnduinoLCD ST7735 specific library */
 #include "AnduinoLCD.h"
-#include <SPI.h>
 
 /*Create an instance of the AnduinoLCD */
 AnduinoLCD LCD = AnduinoLCD(ST7735_CS_PIN, ST7735_DC_PIN, PERIPH_RST_PIN);
@@ -36,9 +35,11 @@ void setup() {
   
   //Setup static text
   LCD.showBanner();                     //load Andium Banner
-  LCD.stroke(255, 255, 255);            //white
+  LCD.setTextColor(ST7735_WHITE);            //white
   LCD.setTextSize(2);
-  LCD.text("Sensor Value :\n ", 0, 40); //positioned just under banner 
+  LCD.setCursor(0,40);
+  LCD.print("Sensor Value:"); //positioned just under banner 
+  LCD.println();
   LCD.setTextSize(5);                   // set the font size larger for the digital reading
 
 }
