@@ -10,7 +10,7 @@
   get started!
   https://github.com/andium/Anduino/wiki
 
-  Written by Brian Carbonette Copyright © 2016 Andium 
+  Written by Brian Carbonette Copyright © 2017 Andium 
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -41,7 +41,11 @@ AnduinoNFC NFC = AnduinoNFC();
 AnduinoLCD LCD = AnduinoLCD(ST7735_CS_PIN, ST7735_DC_PIN, PERIPH_RST_PIN);
           
 void setup() {
-    //Serial.begin(115200);
+    Serial.begin(115200);
+    while(!Serial)
+    {
+      ;
+    }
     
     /* AnduinoLCD setup
      */
@@ -88,7 +92,7 @@ void keyCardScan(void)
           
           //Serial.println("ACCESS GRANTED - Welcome Brian");
           LCD.setTextSize(2);
-          LCD.stroke(255,255,255);
+          LCD.setTextColor(ST7735_WHITE); //white
           LCD.setTextWrap(true);
           LCD.screenPrint("Welcome Brian Carbonette", 0, 40);
           delay(2000);
@@ -109,7 +113,7 @@ void keyCardScan(void)
           
           //Serial.println("ACCESS GRANTED - Welcome Dooley");
           LCD.setTextSize(2);
-          LCD.stroke(255,255,255);
+          LCD.setTextColor(ST7735_WHITE); //white
           LCD.setTextWrap(true);
           LCD.screenPrint("Welcome James Dooley", 0, 40);
           delay(2000);
@@ -149,8 +153,9 @@ void accessDenied(void)
   int i=5;
   while(i>0)
   { LCD.setTextSize(2);
-    LCD.stroke(229,24,24);
-    LCD.text("Access Denied", 0, 40);
+    LCD.setTextColor(ST7735_RED);
+    LCD.setCursor(0,40);
+    LCD.print("Access Denied");
     delay(500);
     clearScreen();
     i--;
@@ -165,17 +170,14 @@ void accessDenied(void)
 
 void clearScreen(void)
 {
-   LCD.stroke(1,1,1);
-   LCD.fill(1,1,1);
-   LCD.rect(0,40,LCD.width(),100);
+   LCD.fillRect(0,40,LCD.width(),100, ST7735_BLACK);
 }
 
 //default screen image
 void scanInst(void)
   {
-    LCD.stroke(255, 255, 255); //white
+    LCD.setTextColor(ST7735_WHITE); //white
     LCD.setTextSize(2);
     LCD.setTextWrap(true);
     LCD.screenPrint("Scan keycard to enter!", 0, 40); 
 }
-
