@@ -6,7 +6,7 @@
   get started!
   https://github.com/andium/Anduino/wiki
 
-  Written by Brian Carbonette Copyright © 2016 Andium 
+  Written by Brian Carbonette Copyright © 2017 Andium 
   
  Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ void AnduinoLCD::begin(void)
 
     // initialize a ST7735S chip, black tab
     initR(INITR_BLACKTAB);   
-    setRotation(1);
+    setRotation(3);
     fillScreen(ST7735_BLACK);
 
 
@@ -149,16 +149,12 @@ void AnduinoLCD::waveform(uint8_t analogPin, uint8_t px)
   int drawHeight = map(sensor, 0, 1023, 0, height()-60);  //map range for sensor trend
   int xPos = px;                                          //pixel position counter
 
-  //     (r ,  g,  b)
-  stroke(250, 180, 10);
-  line(xPos, height() - drawHeight, xPos, height()-drawHeight+5);
+  drawLine(xPos, height() - drawHeight, xPos, height()-drawHeight+5, 0xFD20);
 
   //If the line has reached the end of the screen
   //refresh the screen less the banner
   if (xPos >= 160) {
-    stroke(1,1,1);
-    fill(1,1,1);
-    rect(0,40,width(),100); //screen size less banner
+    fillRect(0,40,width(),100,ST7735_BLACK); //clear the screen size less banner
   }
 
   delay(15);  //sample rate as a function of loop iterations
@@ -175,12 +171,14 @@ void AnduinoLCD::digitalGauge(uint8_t analogPin)
   // convert the reading to a char array
   sensorVal.toCharArray(sensorPrintout, 4);
 
-  stroke(255, 255, 255);
-  text(sensorPrintout, 0, 60);
+  setTextColor(ST7735_WHITE);
+  setCursor(0,60);
+  print(sensorPrintout);
   delay(250); //refresh reate
   //refresh screen by blacking out previous reading
-  stroke(0, 0, 0);
-  text(sensorPrintout, 0, 60);
+  setTextColor(ST7735_BLACK);
+  setCursor(0,60);
+  print(sensorPrintout);
 }
 
 

@@ -8,7 +8,7 @@
   get started!
   https://github.com/andium/Anduino/wiki
 
-  Written by Brian Carbonette Copyright © 2016 Andium 
+  Written by Brian Carbonette Copyright © 2017 Andium 
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.

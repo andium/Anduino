@@ -1,0 +1,8 @@
+AnduinoWiFi	KEYWORD2
+printDetails	KEYWORD2
+disconnectAP	KEYWORD2
+isAPmode	KEYWORD2
+getSSID	KEYWORD2
+getPassword	KEYWORD2
+parseRequest	KEYWORD2
+getClient	KEYWORD1

@@ -6,7 +6,7 @@
   get started!
   https://github.com/andium/Anduino/wiki
 
-  Written by Brian Carbonette Copyright © 2016 Andium 
+  Written by Brian Carbonette Copyright © 2017 Andium 
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@
 
 /* Include the AnduinoLCD ST7735 specific library */
 #include "AnduinoLCD.h"
-#include <SPI.h>
 
 /*Create an instance of the AnduinoLCD */
 AnduinoLCD LCD = AnduinoLCD(ST7735_CS_PIN, ST7735_DC_PIN, PERIPH_RST_PIN);
@@ -34,7 +33,6 @@ void setup() {
   LCD.fillScreen(ST7735_BLACK);  //clear the screen
   LCD.setBacklight(ON);
 
-  
   LCD.splashScreen();   //load Andium splash screen
 
 }

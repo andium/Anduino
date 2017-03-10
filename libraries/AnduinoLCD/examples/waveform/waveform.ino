@@ -6,7 +6,7 @@
   get started!
   https://github.com/andium/Anduino/wiki
 
-  Written by Brian Carbonette Copyright © 2016 Andium 
+  Written by Brian Carbonette Copyright © 2017 Andium 
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@
 
 /* Include the AnduinoLCD ST7735 specific library */
 #include "AnduinoLCD.h"
-#include <SPI.h>
 
 AnduinoLCD screen = AnduinoLCD(ST7735_CS_PIN, ST7735_DC_PIN, PERIPH_RST_PIN);
 
@@ -58,5 +57,4 @@ delay(250); //delay can be used as a pseudo-sample rate adjustment
 
 
 }
-
 
