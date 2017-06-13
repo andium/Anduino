@@ -4,14 +4,14 @@
 #include "AnduinoLCD.h" 
 
 // WiFi parameters 
-#define WLAN_SSID       "AndiumTraining" 
-#define WLAN_PASS       "Curate!!" 
+#define WLAN_SSID       "ssid" 
+#define WLAN_PASS       "password" 
 
 // Adafruit IO 
 #define AIO_SERVER      "io.adafruit.com" 
 #define AIO_SERVERPORT  1883 
-#define AIO_USERNAME    "bcarbon1" 
-#define AIO_KEY         "d5fbd1e7e6fb486db2df5c5e25bd2192" 
+#define AIO_USERNAME    "AIO_USERNAME" 
+#define AIO_KEY         "AIO_KEY" 
 
 WiFiClient client; 
 Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY); 
