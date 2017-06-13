@@ -4,8 +4,8 @@
 #include "AnduinoLCD.h" 
 
 // WiFi parameters 
-#define WLAN_SSID       "Beach Community" 
-#define WLAN_PASS       "Binghamton2011" 
+#define WLAN_SSID       "AndiumTraining" 
+#define WLAN_PASS       "Curate!!" 
 
 // Adafruit IO 
 #define AIO_SERVER      "io.adafruit.com" 
@@ -82,7 +82,7 @@ void loop() {
  //prev val stored for LCD 
  co2Prev = co2; 
  //repeat every 1min 
- delay(60000); 
+ delay(1000); 
  
 } 
 // connect to adafruit io via MQTT 
