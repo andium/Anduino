@@ -1,4 +1,4 @@
-#include "AnduinoWiFi.h"
+#include "AnduinoAP.h"
 
 
 int APstatus = WL_IDLE_STATUS;
@@ -13,12 +13,12 @@ char SSIDvalchar[40] = "";
 char passwordchar[40] = "";
 
 
-AnduinoWiFi::AnduinoWiFi()
+AnduinoAP::AnduinoAP()
 {
 
 }
 
-int AnduinoWiFi::begin(char APssid[])
+int AnduinoAP::begin(char APssid[])
 {
     //create WiFi AP
     APstatus = WiFi.beginAP(APssid);
@@ -39,7 +39,7 @@ int AnduinoWiFi::begin(char APssid[])
     return APstatus;
 }
 
-bool AnduinoWiFi::disconnectAP()
+bool AnduinoAP::disconnectAP()
 {
   //disconnect from AP mode
     WiFi.disconnect();
@@ -49,7 +49,7 @@ bool AnduinoWiFi::disconnectAP()
   return false;
 }
 
-uint8_t AnduinoWiFi::connectToWiFi(char* newSsid, char* newPass)
+uint8_t AnduinoAP::connectToWiFi(char* newSsid, char* newPass)
 {
    
     // attempt to connect to Wifi network:
@@ -74,7 +74,7 @@ uint8_t AnduinoWiFi::connectToWiFi(char* newSsid, char* newPass)
   
 }
 
-void AnduinoWiFi::printAPStatus() 
+void AnduinoAP::printAPStatus() 
 {
     Serial.print("SSID: ");
     Serial.println(WiFi.SSID());
@@ -92,7 +92,7 @@ void AnduinoWiFi::printAPStatus()
     Serial.println("/register");
 }
 
-void AnduinoWiFi::printWiFiStatus() 
+void AnduinoAP::printWiFiStatus() 
 {
     Serial.println("Success! Connected to...");
     Serial.print("SSID: ");
@@ -108,7 +108,7 @@ void AnduinoWiFi::printWiFiStatus()
     Serial.println(" dBm");
 }
 
-void AnduinoWiFi::getRegistrationPage(WiFiClient client)
+void AnduinoAP::getRegistrationPage(WiFiClient client)
 {
     //Header
     client.println("HTTP/1.1 200 OK");
@@ -153,7 +153,7 @@ void AnduinoWiFi::getRegistrationPage(WiFiClient client)
     client.stop();
 }
 
-void AnduinoWiFi::postRegistrationPage(WiFiClient client)
+void AnduinoAP::postRegistrationPage(WiFiClient client)
 {
     //Header
     client.println("HTTP/1.1 200 OK");
@@ -200,7 +200,7 @@ void AnduinoWiFi::postRegistrationPage(WiFiClient client)
 
 }
 
-void AnduinoWiFi::parseRequest(WiFiClient client)
+void AnduinoAP::parseRequest(WiFiClient client)
 {
     String currentLine = "";
     bool getRegisterPage = false;
@@ -260,7 +260,7 @@ void AnduinoWiFi::parseRequest(WiFiClient client)
 
 //ex input:SSID=WiFissid&wifipassword=hmmmm&eof=%23EOF
 
-uint8_t AnduinoWiFi::recursiveBodyParser(String reqBody)
+uint8_t AnduinoAP::recursiveBodyParser(String reqBody)
 {
 
   String param = "";
@@ -343,7 +343,7 @@ uint8_t AnduinoWiFi::recursiveBodyParser(String reqBody)
   
 }
 
-String AnduinoWiFi::decodeUri(String buff)
+String AnduinoAP::decodeUri(String buff)
 {
   //Decode popular special characters
   buff.replace("+", " ");
@@ -387,22 +387,22 @@ String AnduinoWiFi::decodeUri(String buff)
 
 }
 
-WiFiClient AnduinoWiFi::getClient()
+WiFiClient AnduinoAP::getClient()
 {
     return AnduinoWiFiclient = APserver.available();
 }
 
-String AnduinoWiFi::getSSID()
+String AnduinoAP::getSSID()
 {
   return SSIDval;
 }
 
-String AnduinoWiFi::getPassword()
+String AnduinoAP::getPassword()
 {
   return password;
 }
 
-bool AnduinoWiFi::isAPmode()
+bool AnduinoAP::isAPmode()
 {
   return mode;
 }
