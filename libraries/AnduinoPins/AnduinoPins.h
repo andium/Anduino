@@ -28,8 +28,9 @@
 #ifdef AnduinoWiFi
 /* Anduino pin definitions */
 #define ARDUINO_RST_PIN     A0       /* Reset for Arduino itself */
-#define PERIPH_RST_PIN      5        /* Reset signal for CC1200 radio, PN532 NFC and ST7735 TFT */
+#define PERIPH_RST_PIN      5        /* Reset signal for CC1200 radio, PN532 NFC */
 
+#define ST7735_RST_PIN      13       /* ST7735 Reset Pin */
 #define ST7735_CS_PIN       9        /* ST7735 chip select pin */
 #define ST7735_DC_PIN       8        /* ST7735 DC (data / command) pin */
 #define ST7735_BKLIT_PIN    4        /* ST7735 backlight pin */
